@@ -22,7 +22,7 @@ function Projects() {
 
       <ShowMoreWrapper items={projects} maxItems={6}>
         {(visibleProjects) => (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-[10vh] px-[2rem] py-[2rem] lg:px-[3rem] lg:py-[3rem] relative z-7">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 px-[2rem] py-[2rem] lg:px-[3rem] lg:py-[3rem] relative z-7">
             {visibleProjects?.map((project, index) => (
               <div key={index} className="h-full">
                 <ProjectCard
