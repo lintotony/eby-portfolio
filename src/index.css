@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@theme {
+  /* --color-primary: #0c1f1a;
+  --color-secondary: #f0f4f3;
+  --color-accent: #bdd9c0; */
+
+  --color-primary: #0d1b2a;
+  --color-secondary: #f0f4f3;
+  --color-accent: #00b4d8;
+
+  /* --color-primary: #1f160d;  
+--color-secondary: #fcfbf5; 
+--color-accent: #ffd966; */
+
+  --font-primary: "General Sans", sans-serif;
+  --font-secondary: "Playfair Display", serif;
+
+  --text-title-lg: 7.089rem;
+  --text-title-md: 4.854rem;
+  --text-title-sm: 3.236rem;
+  --text-header-lg: 4.236rem;
+  --text-header-md: 2.618rem;
+  --text-header-sm: 2.618rem;
+  --text-sub-header-lg: 2.618rem;
+  --text-sub-header-md: 2.618rem;
+  --text-sub-header-sm: 1.618rem;
+  --text-content-lg: 1.618rem;
+  --text-content-md: 1.618rem;
+  --text-content-sm: 1rem;
+  --text-body: 1rem;
+  --text-small: 0.618rem;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+  height: -webkit-fill-avaiable;
+  font-size: 24px;
+
+  @media (max-width: 1536px) {
+    font-size: 20px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+body {
+  height: -webkit-fill-avaiable;
+}
+
+@keyframes scroll {
+  to {
+    transform: translate(calc(-50% - 1rem));
+  }
+}
+
+@keyframes scrollLarge {
+  to {
+    transform: translate(calc(-50% - 1.5rem));
+  }
+}
+
+.animate-scroll {
+  animation: scrollLarge 10s linear infinite;
+
+  @media (max-width: 1024px) {
+    animation: scroll 10s linear infinite;
+  }
+}
+
+@layer base {
+  section {
+    @apply scroll-mt-15;
+  }
+}
+
+
+
