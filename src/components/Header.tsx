@@ -4,13 +4,15 @@ import NavItem from "./NavItem";
 import Hamburger from "./Hamburger";
 
 function Header() {
-  const [isMenuClicked, setIsMenuClicked] = useState(false);
+  const [isMenuClicked, setIsMenuClicked] = useState<boolean>(false);
 
   const handleMenuIconClick = () => {
     setIsMenuClicked((prev) => !prev);
   };
 
-  const closeMenu = () => setIsMenuClicked(false);
+  const handleLinkClick = () => {
+    setIsMenuClicked(false);
+  };
 
   const navItems = [
     { label: "Home", path: "home" },
@@ -23,33 +25,31 @@ function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-primary w-full flex items-center justify-center lg:h-[10vh]">
-      <nav className="w-full flex items-center justify-between px-4 py-4">
+    <header className="z-100 bg-primary w-full flex items-center justify-center lg:h-[10vh] sticky top-0 lg:z-0">
+      <nav className="w-full flex items-center px-[1rem] py-[1rem] justify-between">
         <a href="/">
           <img
             src={Logo}
-            alt="Logo"
-            className="w-[var(--text-sub-header-lg)] lg:hidden"
+            alt="My Logo"
+            className="w-(--text-sub-header-lg) lg:hidden"
           />
         </a>
-
         <ul
-          className={`flex flex-col gap-6 absolute top-0 left-0 w-full h-screen bg-primary pl-8 justify-center transition-all duration-300 ease-in-out ${
+          className={`flex flex-col align-center gap-[1rem] font-primary absolute top-0 left-0 w-full pl-[2rem] bg-primary justify-center transition-all duration-[300ms] ease-in-out h-screen ${
             isMenuClicked
               ? "translate-y-0 opacity-100"
               : "-translate-y-full opacity-0"
-          } lg:flex-row lg:relative lg:h-full lg:translate-y-0 lg:opacity-100 lg:gap-8 lg:pl-0`}
+          } lg:relative lg:flex-row lg:h-full lg:translate-y-0 lg:opacity-100`}
         >
-          {navItems?.map((item) => (
+          {navItems.map(({ label, path }) => (
             <NavItem
-              key={item.path}
-              label={item.label}
-              path={item.path}
-              closeMenu={closeMenu}
+              key={path}
+              label={label}
+              path={path}
+              onClick={handleLinkClick}
             />
           ))}
         </ul>
-
         <Hamburger isClicked={isMenuClicked} onClick={handleMenuIconClick} />
       </nav>
     </header>
