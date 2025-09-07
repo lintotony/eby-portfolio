@@ -1,61 +1,44 @@
-import React, { useRef } from "react";
+import React from "react";
 import classNames from "classnames";
 import TranslateY from "../animations/TranslateY";
 
 type Props = {
-  /**Label for the nav item */
   label: React.ReactNode;
-
-  /**Whetther its interactice or not */
-  interactive?: boolean;
-
-  /**Is active or not */
-  isActive?: boolean;
-
-  /** Path to route */
   path: string;
-
-  /** onClick handler */
-  onClick?: () => void;
-
-  /**Classname for the navitem */
+  isActive?: boolean;
+  closeMenu?: () => void;
   className?: string;
 };
 
-function NavItem(props: Props) {
-  const {
-    label,
-    interactive = true,
-    isActive,
-    className,
-    path,
-    onClick,
-  } = props;
-  const activeEl = useRef<HTMLLIElement>(null);
+function NavItem({ label, path, isActive, closeMenu, className }: Props) {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+
+    const targetEl = document.getElementById(path);
+    if (targetEl) {
+      targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    closeMenu?.();
+  };
+
   return (
-    <TranslateY className="lg:overflow-visible">
+    <TranslateY>
       <li
         className={classNames(
           className,
-          "cursor-pointer lg:text-body lg:font-medium overflow-hidden transition-all duration-[300ms] ease-in-out text-title-sm font-medium cursor-shrink-target"
+          "cursor-pointer lg:text-body lg:font-medium text-title-sm font-medium overflow-hidden transition-all duration-300 ease-in-out"
         )}
-        ref={activeEl}
       >
         <a
           href={`#${path}`}
-          onClick={onClick}
+          onClick={handleClick}
           className={classNames(
-            "inline-block relative transition-all duration-[200ms] ease-in-out text-secondary hover:translate-y-[-110%] hover:text-accent",
-            {
-              ["text-accent"]: isActive,
-              ["hover:translate-none"]: !interactive,
-            }
+            "inline-block relative transition-all duration-200 ease-in-out text-secondary hover:text-accent",
+            { "text-accent": isActive }
           )}
         >
           {label}
-          {interactive && (
-            <div className="flex absolute top-[110%] left-[0]">{label}</div>
-          )}
         </a>
       </li>
     </TranslateY>
