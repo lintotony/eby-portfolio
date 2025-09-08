@@ -15,7 +15,7 @@ function Home() {
         <h1 className="font-primary text-title-sm font-semibold text-center text-secondary leading-20 sm:text-title-md sm:leading-30 lg:text-[min(25vh,var(--text-title-lg))] lg:leading-[calc(1.1_*_min(25vh,_var(--text-title-lg)))] cursor-show-image">
           <TranslateY>Hi,</TranslateY>
           <TranslateY>
-            I’m <span className="text-accent">Eby Thomassss</span>
+            I’m <span className="text-accent">Eby Thomas</span>
           </TranslateY>
         </h1>
         <div className="w-full flex gap-[0.5rem] items-center lg:w-[100%]">
